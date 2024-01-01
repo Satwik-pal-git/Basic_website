@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <ul class="menu-items">
+                <li><a href="/home">Client</a></li>
+                <li><a href="#">Insights</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="user">
+                    <i class="fa-solid fa-user-gear"></i>
+                </li>
+            </ul>
+            <div class="logo">
+                <img src="https://s3u.tmimgcdn.com/800x0/u78131763/64c22144d519c8c1a6c773f3f397818f.jpg" alt="">
+            </div>
+        </div>
+    </nav>
+    <div class="mainBody">
+        <h2>Your Posts</h2>
+        <div class="wrapper" href="">
+            <%if(propertyData.length==0){%>
+                <div class="noPost">
+                    <img src="https://www.meteryard.com/website/images/no_property_2.png" alt="">
+                </div>
+                <%}else {%>
+                    <% for(let i=0;i<propertyData.length;i++){%>
+                        <div class="card">
+                            <div class="card-banner">
+                                <img class="banner-img" src="data:image/<%=propertyData[i].image.contentType%>;base64,
+                    <%=propertyData[i].image.data.toString('base64')%>" />
+                            </div>
+                            <div class="card-body">
+                                <h2 class="post-title">
+                                    <%=propertyData[i].name%>
+                                </h2>
+                                <p><i class="fa-solid fa-location-dot"></i>
+                                    <%=propertyData[i].location%>
+                                </p>
+                                <p class="post-description">
+                                    <%= propertyData[i].description%>
+                                </p>
+                                <div class="card-profile">
+                                    <div class="eye"><i class="fa-solid fa-eye"></i></div>
+                                    <div class="card-info">
+                                        <p class="post-views">XX k views</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                            <%}%>
+        </div>
+        <div class="form">
+            <h2>Add Your Property</h2>
+            <form action="/admin" method="POST" enctype="multipart/form-data">
+                <div class="form_wrapper">
+                    <div class="img-upload">
+                        <div class="img-edit">
+                            <input type='file' name='p_image' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"></label>
+                        </div>
+                        <div class="img-preview">
+                            <div id="imagePreview"
+                                style="background-image: url(https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/property-icon.png);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="detail">
+                            <input type="text" name="P_name" placeholder="Enter post's title" id="p_name">
+                            <label for="p_name"></label>
+                            <input type="text" name="P_location" placeholder="Enter the location" id="p_location">
+                            <label for="p_location"></label>
+                        </div>
+                        <div class="descrip">
+                            <textarea name="P_desc" id="p_desc" cols="30" rows="10"
+                                placeholder="Enter Property description"></textarea>
+                            <label for="p_desc"></label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submitButton">Add Post</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container container">
+            <div class="content_1">
+                <img src="https://s3u.tmimgcdn.com/800x0/u78131763/64c22144d519c8c1a6c773f3f397818f.jpg" alt="logo"
+                    width="100px">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa dicta <br> autem laudantium
+                    suscipit
+                    tempore
+                    amet nisi quae est. <br> Similique reprehenderit esse quasi doloremque! Dolore, incidunt?</p>
+                <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards">
+            </div>
+            <div class="content_2">
+                <h4>LOCATIONS</h4>
+                <a href="#">NEW DELHI</a>
+                <a href="#">MUMBAI</a>
+                <a href="#">BANGALORE</a>
+                <a href="#">HYDERABAD</a>
+            </div>
+            <div class="content_3">
+                <h4>QUICK LINKS</h4>
+                <a href="#">About Us</a>
+                <a href="#" target="_blank">Contact Us</a>
+                <a href="#" target="_blank">Terms & Conditions</a>
+                <a href="#" target="_blank">Privacy-Policy</a>
+            </div>
+            <div class="content_4">
+                <h4>NEWLETTER</h4>
+                <p>Be the first to know about the new<br>properties, Lorem, ipsum dolor.!</p>
+                <div class="f-mail">
+                    <input type="email" placeholder="Your Email">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="footer-design">
+            <div class="footer-design-txt container">
+                <p>Design and Code by Satwik Pal - Assignment</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="admin.js"></script>
+
+</html>

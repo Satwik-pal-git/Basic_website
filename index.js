@@ -2,6 +2,7 @@ const express = require("express")
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
+const fs = require('fs');
 const ejs = require("ejs");
 const session = require("express-session");
 var bodyParser = require('body-parser');
@@ -12,10 +13,22 @@ const mainRoutes = require("./routes/mainRoutes");
 const CookieSession = require("cookie-session")
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
+const multer = require("multer");
+const PostData = require("./models/adminPostModel");
 dotenv.config();
 connectDB();
 
 require("./configDB/passport-setup")(passport);
+
+const storage = multer.diskStorage({
+    destination: (req, res, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+const upload = multer({ storage: storage });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -47,6 +60,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRoutes);
+app.post("/admin", upload.single("p_image"), async (req, res) => {
+    const newData = new PostData({
+        name: req.body.P_name,
+        location: req.body.P_location,
+        description: req.body.P_desc,
+        image: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: req.file.mimetype
+        }
+    });
+    await newData.save().then(() => {
+        res.status(200).redirect("/admin");
+    }).catch(err => {
+        console.log(err);
+    });
+});
 app.use("/", mainRoutes);
 
 

@@ -8,7 +8,7 @@ exports.landingPage = (req, res) => {
 exports.login = async (req, res) => {
     const email = req.body.mail;
     const password = req.body.password;
-    console.log(email, password);
+    // console.log(email, password);
 
     const olduser = await User.findOne({ email: email }).select("+password");
 
@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const newUser = new User({
         name: req.body.name,
         email: req.body.mail,
@@ -40,7 +40,7 @@ exports.signUp = async (req, res) => {
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_expiry
         });
-        console.log("Token ->", token);
+        // console.log("Token ->", token);
         res.status(200).redirect("/home");
     }).catch(err => {
         console.log(err);
