@@ -6,7 +6,6 @@ const fs = require('fs');
 const ejs = require("ejs");
 const session = require("express-session");
 // var MongoDBStore = require('connect-mongodb-session')(session);
-const MongoStore = require("connect-mongo");
 const CookieSession = require("cookie-session")
 var bodyParser = require('body-parser');
 const connectDB = require("./configDB/db");
@@ -41,6 +40,11 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
+
+// const store = new MongoDBStore({
+//     uri: process.env.MONGO_URI,
+//     collection: 'usersessions'
+// });
 app.use(CookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: process.env.COOKIE_KEY
@@ -56,6 +60,15 @@ app.use(
         }),
     })
 );
+
+// app.use(
+//     session({
+//         secret: "this is random for session",
+//         resave: false,
+//         saveUninitialized: false,
+//         store: store,
+//     })
+// );
 
 app.use(passport.initialize());
 app.use(passport.session());
