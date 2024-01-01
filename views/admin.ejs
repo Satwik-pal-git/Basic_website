@@ -68,37 +68,50 @@
                         <%}%>
                             <%}%>
         </div>
+        <h2>Add Your Property</h2>
         <div class="form">
-            <h2>Add Your Property</h2>
-            <form action="/admin" method="POST" enctype="multipart/form-data">
-                <div class="form_wrapper">
-                    <div class="img-upload">
-                        <div class="img-edit">
-                            <input type='file' name='p_image' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                            <label for="imageUpload"></label>
-                        </div>
-                        <div class="img-preview">
-                            <div id="imagePreview"
-                                style="background-image: url(https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/property-icon.png);">
+            <div class="property-form">
+                <form action="\admin" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="">Property Photo</label>
+                        <div class="Image">
+                            <div class="img-upload">
+                                <div class="img-edit">
+                                    <input type='file' name='p_image' id="imageUpload" accept=".png, .jpg, .jpeg"
+                                        required />
+                                    <label for="imageUpload"></label>
+                                </div>
+                                <div class="img-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url(https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/property-icon.png);">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="details">
-                        <div class="detail">
-                            <input type="text" name="P_name" placeholder="Enter post's title" id="p_name">
-                            <label for="p_name"></label>
-                            <input type="text" name="P_location" placeholder="Enter the location" id="p_location">
-                            <label for="p_location"></label>
-                        </div>
-                        <div class="descrip">
-                            <textarea name="P_desc" id="p_desc" cols="30" rows="10"
-                                placeholder="Enter Property description"></textarea>
-                            <label for="p_desc"></label>
-                        </div>
+                    <div class="form-group">
+                        <label for="name">Title:</label>
+                        <input type="text" name="P_name" placeholder="Enter post's title" id="p_name" required>
+
                     </div>
-                </div>
-                <button type="submit" class="submitButton">Add Post</button>
-            </form>
+                    <div class="form-group">
+                        <label for="email">Location:</label>
+                        <input type="text" name="P_location" placeholder="Enter the location" id="p_location" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea name="P_desc" id="p_desc" rows="4" placeholder="Enter Property description"
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="staticImage">
+                <img src="https://i.postimg.cc/5ypLndQL/post-property.jpg" alt="">
+            </div>
         </div>
     </div>
     <footer>

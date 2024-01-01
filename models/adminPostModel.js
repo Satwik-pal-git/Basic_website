@@ -17,7 +17,6 @@ const postModel = new mongoose.Schema({
         data: Buffer,
         contentType: String
     }
-
 });
 
 module.exports = mongoose.model('PostModel', postModel);
