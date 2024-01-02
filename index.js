@@ -22,14 +22,7 @@ connectDB();
 
 require("./configDB/passport-setup")(passport);
 
-const storage = multer.diskStorage({
-    destination: (req, res, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-});
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -58,13 +51,14 @@ app.use(passport.session());
 
 app.use("/auth", authRoutes);
 app.post("/admin", upload.single("p_image"), async (req, res) => {
+
     const newData = new PostData({
         name: req.body.P_name,
         location: req.body.P_location,
         description: req.body.P_desc,
         amount: req.body.P_amount,
         image: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            data: req.file.buffer,
             contentType: req.file.mimetype
         }
     });

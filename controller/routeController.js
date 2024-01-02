@@ -17,6 +17,7 @@ exports.getHomePage = async (req, res) => {
     res.render("home", { propertyData, user });
 };
 exports.getAdmin = async (req, res) => {
+    let user, userId;
     if (req.session.user) {
         userId = req.session.user._id;
         user = await JWTUserData.findById({ _id: userId });
