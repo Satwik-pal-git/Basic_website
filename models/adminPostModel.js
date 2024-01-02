@@ -13,6 +13,10 @@ const postModel = new mongoose.Schema({
         type: String,
         required: [true, "provide Description"]
     },
+    amount: {
+        type: Number,
+        required: [true, "provide Expected Amount"]
+    },
     image: {
         data: Buffer,
         contentType: String

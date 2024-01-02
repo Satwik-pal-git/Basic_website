@@ -23,9 +23,9 @@
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="user">
-                        <%if(user_image.length>0){%>
-                            <img src="<%= user_image %>" alt="">
-                            <%}else {%>
+                        <%if(user.image){%>
+                            <img class="userImage" src="<%= user.image %>" alt="">
+                            <%}else{%>
                                 <i class="fa-solid fa-user-gear"></i>
                                 <%}%>
                     </li>
@@ -35,6 +35,9 @@
                 </div>
             </div>
         </nav>
+        <div id="UserDiv">
+            <p>Welcome back <%=user.name%>! </p>
+        </div>
         <section id="home">
             <div class="home_page ">
                 <div class="home_img ">
@@ -88,7 +91,8 @@
                             temporibus
                             labore quis natus molestiae nulla.</p>
                         <p class="card-price">$800</p>
-                        <button class="card-button">Learn More</button>
+                        <p><i class="fa-solid fa-location-dot"></i>Austin, Texas</p>
+                        <button class="card-button">Check Now</button>
                     </div>
                 </div>
 
@@ -103,7 +107,8 @@
                             temporibus
                             labore quis natus molestiae nulla.</p>
                         <p class="card-price">$800</p>
-                        <button class="card-button">Learn More</button>
+                        <p><i class="fa-solid fa-location-dot"></i>New York, USA</p>
+                        <button class="card-button">Check Now</button>
                     </div>
                 </div>
                 <div class="card">
@@ -117,9 +122,32 @@
                             temporibus
                             labore quis natus molestiae nulla.</p>
                         <p class="card-price">$800</p>
-                        <button class="card-button">Learn More</button>
+                        <p><i class="fa-solid fa-location-dot"></i>California, USA</p>
+                        <button class="card-button">Check Now</button>
                     </div>
                 </div>
+                <%for(let i=0;i<propertyData.length;i++){%>
+                    <div class="card">
+                        <div class="card-image">
+                            <img
+                                src="data:image/<%=propertyData[i].image.contentType%>;base64,<%=propertyData[i].image.data.toString('base64')%>" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                <%= propertyData[i].name %>
+                            </h2>
+                            <p class="card-text">
+                                <%= propertyData[i].description %>
+                            </p>
+                            <p class="card-price">$ <%= propertyData[i].amount %>
+                            </p>
+                            <p><i class="fa-solid fa-location-dot"></i>
+                                <%=propertyData[i].location%>
+                            </p>
+                            <button class="card-button"> Check Now</button>
+                        </div>
+                    </div>
+                    <%}%>
             </div>
         </section>
 

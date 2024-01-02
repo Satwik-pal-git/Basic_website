@@ -23,12 +23,6 @@ body {
     --white: #fff;
     --grey: #aaa;
 }
-/* //........ Navbar ........// */
-
-/* .navbar input[type="checkbox"],
-.navbar .hamburger-lines {
-    display: none;
-} */
 .navbar {
     height: 10vh;
     box-shadow: 0 5px 4px rgb(146 161 176 / 15%);
@@ -63,8 +57,12 @@ body {
     margin-left: 1.5rem;
     font-size: 1.2rem;
 }
-.user{
+.userImage{
+    margin-left: 0 !important;
     border-radius: 50%;
+    /* width: 10px;/ */
+    height: 30px !important;
+    width: 30px !important;
 }
 
 .navbar-container ul a {
@@ -90,7 +88,9 @@ body {
 }
 
 /* //........ Home ........// */
-
+#home{
+    position: relative;
+}
 .home_page img {
     height: 90vh;
     width: 100%;
@@ -104,7 +104,7 @@ body {
 
 .home_txt {
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 5%;
 }
 
@@ -246,6 +246,19 @@ body {
     top: 50%;
 }
 
+/* ...........welcome user............. */
+#UserDiv {
+    display: flex;
+    background-color: rgb(145, 230, 124);
+    color: #fff;
+    height: 6vh;
+    align-items: center;
+    justify-content: center;
+}
+#UserDiv p{
+    font-weight: 800;
+}
+
 
 /* //........ Content 2 ........// */
 
@@ -384,7 +397,12 @@ body {
     flex: 1; /* Allow text content to expand as needed */
     margin-top: 15px;
   }
-  
+  .card-content p{
+    margin-bottom: 5px;
+  }
+  .card-content p i{
+    margin-right: 5px;
+  }
   .card-title {
     font-size: 18px;
     font-weight: bold;

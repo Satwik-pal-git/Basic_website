@@ -15,6 +15,12 @@ $(document).ready(function () {
             );
         }
     });
+    var myDiv = $("#UserDiv");
+
+    myDiv.show();
+    setTimeout(function () {
+        myDiv.hide();
+    }, 5000);
 });
 
 $(".menu-items a").click(function () {

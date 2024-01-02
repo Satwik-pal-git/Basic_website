@@ -18,7 +18,6 @@ router
 router
     .route("/admin")
     .get(routeController.getAdmin)
-// .post(routeController.postAdmin);
 
 router
     .route("/register").post(authController.signUp);

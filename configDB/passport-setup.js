@@ -14,11 +14,9 @@ module.exports = function (passport) {
             async (accessToken, refreshToken, profile, done) => {
                 const newUser = {
                     googleId: profile.id,
-                    displayName: profile.displayName,
+                    name: profile.displayName,
                     image: profile.photos[0].value,
                 };
-                // req._user = newUser;
-                // console.log(newUser);
                 try {
                     let user = await User.findOne({ googleId: profile.id });
                     if (user) {
@@ -38,6 +36,6 @@ module.exports = function (passport) {
         done(null, user.id);
     });
     passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => done(err, user));
+        done(null, id);
     });
 };

@@ -18,14 +18,13 @@ router.get("/google", passport.authenticate("google", {
 
 router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-        // console.log("session in callback", req.session);
-        // console.log(req.isAuthenticated());
+        // let user = req.user;
+        // req.flash("UserData", user);
         res.status(200).redirect('/home');
     }
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-    // console.log("new request", req.user);
     res.redirect("/home");
 });
 

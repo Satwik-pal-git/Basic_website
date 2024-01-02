@@ -5,8 +5,8 @@ const path = require("path");
 const fs = require('fs');
 const ejs = require("ejs");
 const session = require("express-session");
-// var MongoDBStore = require('connect-mongodb-session')(session);
 const CookieSession = require("cookie-session")
+const MongoStore = require("connect-mongo");
 var bodyParser = require('body-parser');
 const connectDB = require("./configDB/db");
 const app = express();
@@ -15,6 +15,8 @@ const mainRoutes = require("./routes/mainRoutes");
 const passport = require("passport");
 const multer = require("multer");
 const PostData = require("./models/adminPostModel");
+var flash = require('connect-flash');
+
 dotenv.config();
 connectDB();
 
@@ -40,36 +42,17 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
-
-// const store = new MongoDBStore({
-//     uri: process.env.MONGO_URI,
-//     collection: 'usersessions'
-// });
-app.use(CookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: process.env.COOKIE_KEY
-}));
-
 app.use(
     session({
         secret: "keyboard_satwik",
-        resave: false,
-        saveUninitialized: false,
+        resave: true,
+        saveUninitialized: true,
         store: MongoStore.create({
             mongoUrl: process.env.MONGO_URI,
         }),
     })
 );
-
-// app.use(
-//     session({
-//         secret: "this is random for session",
-//         resave: false,
-//         saveUninitialized: false,
-//         store: store,
-//     })
-// );
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -79,6 +62,7 @@ app.post("/admin", upload.single("p_image"), async (req, res) => {
         name: req.body.P_name,
         location: req.body.P_location,
         description: req.body.P_desc,
+        amount: req.body.P_amount,
         image: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
             contentType: req.file.mimetype
