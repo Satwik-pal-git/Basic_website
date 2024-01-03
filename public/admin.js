@@ -12,7 +12,17 @@ function readURL(input) {
 $("#imageUpload").change(function () {
     readURL(this);
 });
-$(".user").click(function () {
+
+var isRemoved = true;
+$("#UserProfile").click(function () {
     console.log("clicked");
-    $('#logged').toggleClass('disp');
+    if (isRemoved) {
+        $(".logout").attr("id", "");
+        isRemoved = !isRemoved;
+    } else {
+        $(".logout").attr("id", "disp");
+        isRemoved = !isRemoved;
+    }
+
+    // $('.logout').toggleId('disp');
 });

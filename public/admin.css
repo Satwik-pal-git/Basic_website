@@ -63,9 +63,10 @@ body {
     display: flex;
     flex-direction: column;
 }
-.disp{
-    display: none !important;
+#disp{
+    display: none;
 }
+
 .logout{
     position: absolute;
     top: 7vh;

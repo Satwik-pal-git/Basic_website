@@ -27,7 +27,16 @@ $(".menu-items a").click(function () {
     $("#checkbox").prop("checked", false);
 });
 
-$(".user").click(function () {
+var isRemoved = true;
+$("#UserProfile").click(function () {
     console.log("clicked");
-    $('#logged').toggleClass('disp');
+    if (isRemoved) {
+        $(".logout").attr("id", "");
+        isRemoved = !isRemoved;
+    } else {
+        $(".logout").attr("id", "disp");
+        isRemoved = !isRemoved;
+    }
+
+    // $('.logout').toggleId('disp');
 });

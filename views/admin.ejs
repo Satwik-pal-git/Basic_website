@@ -24,7 +24,7 @@
                 <li><a href="#">Insights</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Contact</a></li>
-                <li class="user">
+                <li class="user" id="UserProfile">
                     <div class="">
                         <%if(user.image){%>
                             <img class="userImage" src="<%= user.image %>" alt="">
@@ -32,7 +32,7 @@
                                 <i class="fa-solid fa-user-gear"></i>
                                 <%}%>
                     </div>
-                    <div class="logout disp" id="logged">
+                    <div class="logout" id="disp">
                         <a href="/auth/logout">Logout</a>
                     </div>
                 </li>
