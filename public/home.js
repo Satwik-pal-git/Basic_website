@@ -31,10 +31,10 @@ var isRemoved = true;
 $("#UserProfile").click(function () {
     console.log("clicked");
     if (isRemoved) {
-        $(".logout").attr("id", "");
+        $(".logout").attr("id", "disp-t");
         isRemoved = !isRemoved;
     } else {
-        $(".logout").attr("id", "disp");
+        $(".logout").attr("id", "disp-f");
         isRemoved = !isRemoved;
     }
 

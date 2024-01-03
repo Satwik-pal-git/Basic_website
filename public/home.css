@@ -61,8 +61,11 @@ body {
     display: flex;
     flex-direction: column;
 }
-#disp{
-    display: none;
+#disp-f{
+    display: none !important;
+}
+#disp-t{
+    display: block !important;
 }
 .logout{
     position: absolute;
