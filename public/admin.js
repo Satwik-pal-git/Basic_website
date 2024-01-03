@@ -12,3 +12,6 @@ function readURL(input) {
 $("#imageUpload").change(function () {
     readURL(this);
 });
+$(".user").click(function () {
+    $('#logged').toggleClass('disp');
+});

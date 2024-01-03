@@ -2,12 +2,9 @@ const router = require("express").Router();
 const passport = require("passport");
 
 //auth logout
-router.get("/auth/logout", (req, res) => {
-    req.logout(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.redirect("/");
+router.get("/logout", (req, res) => {
+    req.session.destroy(function (err) {
+        res.redirect('/'); //Inside a callback… bulletproof!
     });
 });
 

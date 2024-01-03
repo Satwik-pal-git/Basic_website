@@ -25,11 +25,16 @@
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Contact</a></li>
                 <li class="user">
-                    <%if(user.image){%>
-                        <img class="userImage" src="<%= user.image %>" alt="">
-                        <%}else{%>
-                            <i class="fa-solid fa-user-gear"></i>
-                            <%}%>
+                    <div class="">
+                        <%if(user.image){%>
+                            <img class="userImage" src="<%= user.image %>" alt="">
+                            <%}else{%>
+                                <i class="fa-solid fa-user-gear"></i>
+                                <%}%>
+                    </div>
+                    <div class="logout disp" id="logged">
+                        <a href="/auth/logout">Logout</a>
+                    </div>
                 </li>
             </ul>
             <div class="logo">

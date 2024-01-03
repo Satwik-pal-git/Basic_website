@@ -26,3 +26,7 @@ $(document).ready(function () {
 $(".menu-items a").click(function () {
     $("#checkbox").prop("checked", false);
 });
+
+$(".user").click(function () {
+    $('#logged').toggleClass('disp');
+});
