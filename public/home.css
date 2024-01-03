@@ -62,7 +62,7 @@ body {
     flex-direction: column;
 }
 .disp{
-    display: none;
+    display: none !important;
 }
 .logout{
     position: absolute;

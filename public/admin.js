@@ -13,5 +13,6 @@ $("#imageUpload").change(function () {
     readURL(this);
 });
 $(".user").click(function () {
+    console.log("clicked");
     $('#logged').toggleClass('disp');
 });

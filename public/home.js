@@ -28,5 +28,6 @@ $(".menu-items a").click(function () {
 });
 
 $(".user").click(function () {
+    console.log("clicked");
     $('#logged').toggleClass('disp');
 });
