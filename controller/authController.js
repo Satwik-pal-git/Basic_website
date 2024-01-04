@@ -55,6 +55,7 @@ exports.signUp = async (req, res) => {
         });
     } catch (error) {
         console.log("in signUp outer error: ", error);
+        res.redirect("/");
     }
 
 }
